@@ -27,6 +27,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
+          push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-cicd-k8s:node
 
       - name: Verify
