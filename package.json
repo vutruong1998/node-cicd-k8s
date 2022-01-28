@@ -1,0 +1,14 @@
+{
+  "name": "node-cicd-k8s",
+  "version": "1.0.0",
+  "description": "Nodejs & cicd & k8s",
+  "main": "index.js",
+  "author": "VCT",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node index"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}

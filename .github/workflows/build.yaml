@@ -1,0 +1,11 @@
+name: node-cicd-k8s
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
