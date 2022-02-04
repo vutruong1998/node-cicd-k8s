@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.send('Nodejs - CI/CD - K8S')
 })
 
+app.get('/ready', (req, res) => {
+  res.send('Ready')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
