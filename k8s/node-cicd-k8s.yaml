@@ -15,7 +15,7 @@ spec:
       containers:
       - name: node-cicd-k8s
         image: vutruong1998/node-cicd-k8s:node
-        imagePullPolicy: "IfNotPresent"
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
         resources:
