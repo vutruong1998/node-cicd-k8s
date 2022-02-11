@@ -4,7 +4,9 @@ const port = 3000
 const { createClient } = require('redis');
 const uuid = require('uuid')
 
-const client = createClient()
+const client = createClient({
+  url: 'redis://redis:6379'
+})
 client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 
