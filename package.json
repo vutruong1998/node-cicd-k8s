@@ -9,6 +9,8 @@
     "dev": "node index"
   },
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "redis": "^4.0.3",
+    "uuid": "^8.3.2"
   }
 }

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: node-cicd-k8s
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nodeapp
@@ -34,7 +34,7 @@ spec:
   # trùng với label của POD tại Deployment
   selector:
     app: nodeapp
-  type: LoadBalancer
+  type: NodePort
   ports:
     - protocol: TCP
       # cổng dịch vụ ánh xạ vào cổng POD
@@ -43,3 +43,17 @@ spec:
       targetPort: 3000
       # cổng NODE ánh xạ vào cổng dịch vụ (30000-32767)
       nodePort: 31080
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: node-cicd-k8s
+              servicePort: 80
