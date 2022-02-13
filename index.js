@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+require('dotenv').config()
 const { createClient } = require('redis')
 const uuid = require('uuid')
 const bodyParser = require('body-parser')
@@ -11,12 +12,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 const client = createClient({
-  url: 'redis://redis:6379'
+  url: process.env.REDIS_URL || 'redis://redis:6379'
 })
 client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 
-mongoose.connect('mongodb://mongo/k8s', { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(
+  process.env.MONGO_URL || 'mongodb://mongo/k8s',
+  { useUnifiedTopology: true, useNewUrlParser: true }
+)
 const connection = mongoose.connection
 
 connection.once("open", function() {
@@ -49,5 +53,6 @@ app.post('/blogs', async (req, res) => {
 })
 
 app.listen(port, () => {
+  console.log(process.env)
   console.log(`Example app listening on port ${port}`)
 })

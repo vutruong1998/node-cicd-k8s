@@ -22,11 +22,14 @@ spec:
           ports:
             - name: api
               containerPort: 3000
-          env:
-            - name: REDIS_URI
-              value: redis://redis:6379
-            - name: MONGO_URI
-              value: mongodb://mongo/k8s
+          # env:
+          #   - name: REDIS_URI
+          #     value: redis://redis:6379
+          #   - name: MONGO_URI
+          #     value: mongodb://mongo/k8s
+          envFrom:
+            - configMapRef:
+                name: microservice-cm
       restartPolicy: Always
 
 ---
