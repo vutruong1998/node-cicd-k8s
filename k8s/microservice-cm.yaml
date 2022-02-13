@@ -5,5 +5,5 @@ metadata:
   labels:
     component: microservice-cm
 data:
-  REDIS_URL: redis://redis:6379
-  MONGO_URL: mongodb://mongo/k8s
+  REDIS_URI: redis://redis:6379
+  MONGO_URI: mongodb://mongo/k8s

@@ -11,14 +11,12 @@ const Blog = require('./models/Blog.js')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-const client = createClient({
-  url: process.env.REDIS_URL || 'redis://redis:6379'
-})
+const client = createClient({ url: process.env.REDIS_URI })
 client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 
 mongoose.connect(
-  process.env.MONGO_URL || 'mongodb://mongo/k8s',
+  process.env.MONGO_URI,
   { useUnifiedTopology: true, useNewUrlParser: true }
 )
 const connection = mongoose.connection
