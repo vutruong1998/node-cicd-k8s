@@ -1,7 +1,7 @@
 - To apply run the following
 
 ```bash
-kubectl apply -f k8s/node-cicd-k8s.yaml
+kubectl apply -f k8s
 ```
 
 - To see pod, service, deployment, replicaset
