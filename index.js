@@ -27,7 +27,7 @@ connection.once("open", function() {
 
 
 app.get('/', (req, res) => {
-  res.send('Nodejs - CI/CD - K8S')
+  res.send('Nodejs - CI/CD - GKE')
 })
 
 app.get('/ready', (req, res) => {
