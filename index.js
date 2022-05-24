@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/ready', (req, res) => {
-  res.send('Ready')
+  res.send('Ready to run...')
 })
 
 app.get('/call-redis', async (req, res) => {
