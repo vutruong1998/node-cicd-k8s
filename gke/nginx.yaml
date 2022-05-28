@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  selector:
+    matchLabels:
+      name: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - name: nginx
+              containerPort: 80
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  labels:
+    name: nginx-svc
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - port: 80
+      name: http
+      protocol: TCP
+
+  selector:
+    app: nginx
+
+---
+
+# apiVersion: networking.gke.io/v1
+# kind: ManagedCertificate
+# metadata:
+#   name: managed-cert
+# ---

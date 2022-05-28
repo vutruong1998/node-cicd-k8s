@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    name: api
+spec:
+  selector:
+    matchLabels:
+      name: api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api
+        name: api
+    spec:
+      containers:
+        - name: api
+          image: vutruong1998/swarmtest:node
+          imagePullPolicy: Always
+          ports:
+            - name: api
+              containerPort: 8085
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-svc
+  labels:
+    name: node-svc
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - port: 80
+      name: http
+      targetPort: 8085
+      protocol: TCP
+
+  selector:
+    app: api
