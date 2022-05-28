@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: php
   labels:
-    name: api
+    name: php
 spec:
   selector:
     matchLabels:
-      name: api
+      name: php
   replicas: 1
   template:
     metadata:
       labels:
-        app: api
-        name: api
+        app: php
+        name: php
     spec:
       containers:
-        - name: api
+        - name: php
           image: vutruong1998/swarmtest:php
           imagePullPolicy: Always
           ports:
-            - name: api
+            - name: php
               containerPort: 8085
       restartPolicy: Always
 
@@ -42,4 +42,4 @@ spec:
       protocol: TCP
 
   selector:
-    app: api
+    app: php

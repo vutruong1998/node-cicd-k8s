@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: node
   labels:
-    name: api
+    name: node
 spec:
   selector:
     matchLabels:
-      name: api
+      name: node
   replicas: 1
   template:
     metadata:
       labels:
-        app: api
-        name: api
+        app: node
+        name: node
     spec:
       containers:
-        - name: api
+        - name: node
           image: vutruong1998/swarmtest:node
           imagePullPolicy: Always
           ports:
-            - name: api
+            - name: node
               containerPort: 8085
       restartPolicy: Always
 
@@ -42,4 +42,4 @@ spec:
       protocol: TCP
 
   selector:
-    app: api
+    app: node
