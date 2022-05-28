@@ -62,5 +62,5 @@ jobs:
 
       - name: Deploy
         run: |-
-          kubectl replace --force -f ../../k8s
+          kubectl replace --force -f k8s
           kubectl get services -o wide
