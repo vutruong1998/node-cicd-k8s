@@ -62,5 +62,5 @@ jobs:
 
       - name: Deploy
         run: |-
-          kubectl apply -f gke
+          kubectl replace --force -f k8s
           kubectl get services -o wide
