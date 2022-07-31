@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-configmap
+  labels:
+    component: "{{ .Values.name }}"
+data:
+  REDIS_URI: redis://redis:6379
+  MONGO_URI: mongodb://mongo/k8s

@@ -12,18 +12,19 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 const client = createClient({ url: process.env.REDIS_URI })
+console.log(process.env.REDIS_URI)
 client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 
-mongoose.connect(
-  process.env.MONGO_URI,
-  { useUnifiedTopology: true, useNewUrlParser: true }
-)
-const connection = mongoose.connection
+// mongoose.connect(
+//   process.env.MONGO_URI,
+//   { useUnifiedTopology: true, useNewUrlParser: true }
+// )
+// const connection = mongoose.connection
 
-connection.once("open", function() {
-  console.log("MongoDB database connection established successfully");
-})
+// connection.once("open", function() {
+//   console.log("MongoDB database connection established successfully");
+// })
 
 
 app.get('/', (req, res) => {

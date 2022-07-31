@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "example-deploy"
+  labels:
+    name: "{{ .Values.name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.name }}"
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app: "{{ .Values.name }}"
+    spec:
+      containers:
+        - name: app
+          image: vutruong1998/node-cicd-k8s:node
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            # - name: REDIS_URI
+            #   value: redis://redis:6379
+            # - name: MONGO_URI
+            #   value: mongodb://mongo/k8s
+            # using secrets
+            # - name: REDIS_URI
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: microservice-secret
+            #       key: redis-uri
+            # - name: MONGO_URI
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: microservice-secret
+            #       key: mongo-uri
+          envFrom:
+            - configMapRef:
+                name: example-configmap
+      restartPolicy: Always

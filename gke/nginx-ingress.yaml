@@ -3,9 +3,13 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   annotations:
+    kubernetes.io/ingress.global-static-ip-name: cluster-k8s
+    networking.gke.io/managed-certificates: managed-cert
+    kubernetes.io/ingress.class: "gce"
 spec:
   rules:
-    - http:
+    - host: nginx.pray4mycareer.xyz
+      http:
         paths:
         - path: /
           pathType: Prefix
